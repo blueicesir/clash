@@ -23,6 +23,7 @@ import (
 	// add by BlueICE Windows systray
 	"io/ioutil"
 	"github.com/getlantern/systray"
+	"os/exec"
 )
 
 const svcName="Clash for BlueICE"
@@ -65,7 +66,28 @@ func onReady(){
 	systray.SetIcon(getIcon("rsc/clash.ico"))
 	systray.SetTitle("Clash for BlueICE")
 	systray.SetTooltip("Clash for BlueICE")
+	mEdit:=systray.AddMenuItem("Edit config.yml","Edit Clash Config")
+	systray.AddSeparator()
+	mQuit:=systray.AddMenuItem("Exit","Exit then Clash")
 	go ClashMain()
+
+	// 退出按钮只能点击一次
+	go func(){
+		<-mQuit.ClickedCh
+		systray.Quit()
+	}()
+
+	// 事件循环，如果是编辑配置文件菜单，可以多次触发。
+	go func(){
+		for {
+			select {
+				case <-mEdit.ClickedCh:
+					c:=exec.Command("D:\\Tools\\EditPlus\\editplus.exe","D:\\Doc\\Dropbox\\gfw\\config\\config.yml")
+					c.Start()
+			}
+
+		}
+	}()
 }
 
 func getIcon(s string) [] byte {

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Dreamacro/clash/common/queue"
-	C "github.com/Dreamacro/clash/constant"
+	"github.com/blueicesir/clash/common/queue"
+	C "github.com/blueicesir/clash/constant"
 )
 
 type Base struct {

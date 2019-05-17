@@ -9,9 +9,9 @@ import (
 	"runtime"
 	"syscall"
 
-	"github.com/Dreamacro/clash/config"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/hub"
+	"github.com/blueicesir/clash/config"
+	C "github.com/blueicesir/clash/constant"
+	"github.com/blueicesir/clash/hub"
 
 	log "github.com/sirupsen/logrus"
 
@@ -27,22 +27,22 @@ import (
 
 const svcName="Clash for BlueICE"
 
-type program struct{}
+// type program struct{}
 
-func (p *program) Start(s service.Service) error {
-	go p.run()
-	return nil
-}
+// func (p *program) Start(s service.Service) error {
+// 	go p.run()
+// 	return nil
+// }
 
-func (p *program) run() {
-	// logger.Infof("%s running %v.",svcName,service.Platform())
-	go ClashMain()
-}
+// func (p *program) run() {
+// 	// logger.Infof("%s running %v.",svcName,service.Platform())
+// 	go ClashMain()
+// }
 
-func (p *program) Stop(s service.Service) error {
-	// logger.Infof("%s Stopping!",svcName)
-	return nil
-}
+// func (p *program) Stop(s service.Service) error {
+// 	// logger.Infof("%s Stopping!",svcName)
+// 	return nil
+// }
 
 
 

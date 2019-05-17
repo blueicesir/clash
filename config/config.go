@@ -9,13 +9,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	adapters "github.com/Dreamacro/clash/adapters/outbound"
-	"github.com/Dreamacro/clash/common/structure"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/dns"
-	"github.com/Dreamacro/clash/log"
-	R "github.com/Dreamacro/clash/rules"
-	T "github.com/Dreamacro/clash/tunnel"
+	adapters "github.com/blueicesir/clash/adapters/outbound"
+	"github.com/blueicesir/clash/common/structure"
+	C "github.com/blueicesir/clash/constant"
+	"github.com/blueicesir/clash/dns"
+	"github.com/blueicesir/clash/log"
+	R "github.com/blueicesir/clash/rules"
+	T "github.com/blueicesir/clash/tunnel"
 
 	yaml "gopkg.in/yaml.v2"
 )

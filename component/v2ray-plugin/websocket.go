@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"net"
 
-	"github.com/Dreamacro/clash/component/vmess"
+	"github.com/blueicesir/clash/component/vmess"
 )
 
 // WebsocketOption is options of websocket obfs

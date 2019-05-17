@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Dreamacro/clash/component/vmess"
-	C "github.com/Dreamacro/clash/constant"
+	"github.com/blueicesir/clash/component/vmess"
+	C "github.com/blueicesir/clash/constant"
 )
 
 type Vmess struct {

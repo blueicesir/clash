@@ -10,8 +10,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Dreamacro/clash/common/picker"
-	C "github.com/Dreamacro/clash/constant"
+	"github.com/blueicesir/clash/common/picker"
+	C "github.com/blueicesir/clash/constant"
 )
 
 type URLTest struct {

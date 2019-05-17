@@ -9,7 +9,7 @@ import (
 	"net"
 	"strconv"
 
-	C "github.com/Dreamacro/clash/constant"
+	C "github.com/blueicesir/clash/constant"
 
 	"github.com/Dreamacro/go-shadowsocks2/socks"
 )

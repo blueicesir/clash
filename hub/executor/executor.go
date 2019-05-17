@@ -1,12 +1,12 @@
 package executor
 
 import (
-	"github.com/Dreamacro/clash/config"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/dns"
-	"github.com/Dreamacro/clash/log"
-	P "github.com/Dreamacro/clash/proxy"
-	T "github.com/Dreamacro/clash/tunnel"
+	"github.com/blueicesir/clash/config"
+	C "github.com/blueicesir/clash/constant"
+	"github.com/blueicesir/clash/dns"
+	"github.com/blueicesir/clash/log"
+	P "github.com/blueicesir/clash/proxy"
+	T "github.com/blueicesir/clash/tunnel"
 )
 
 // Parse config with default config path

@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	adapters "github.com/Dreamacro/clash/adapters/inbound"
+	adapters "github.com/blueicesir/clash/adapters/inbound"
 )
 
 const (

@@ -3,7 +3,7 @@ package tunnel
 import (
 	"net"
 
-	C "github.com/Dreamacro/clash/constant"
+	C "github.com/blueicesir/clash/constant"
 )
 
 // TrafficTrack record traffic of net.Conn

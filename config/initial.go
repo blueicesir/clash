@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	C "github.com/Dreamacro/clash/constant"
+	C "github.com/blueicesir/clash/constant"
 
 	log "github.com/sirupsen/logrus"
 )

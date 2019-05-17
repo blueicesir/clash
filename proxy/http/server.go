@@ -5,9 +5,9 @@ import (
 	"net"
 	"net/http"
 
-	adapters "github.com/Dreamacro/clash/adapters/inbound"
-	"github.com/Dreamacro/clash/log"
-	"github.com/Dreamacro/clash/tunnel"
+	adapters "github.com/blueicesir/clash/adapters/inbound"
+	"github.com/blueicesir/clash/log"
+	"github.com/blueicesir/clash/tunnel"
 )
 
 var (

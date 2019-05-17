@@ -8,10 +8,10 @@ import (
 	"net"
 	"strconv"
 
-	"github.com/Dreamacro/clash/common/structure"
-	obfs "github.com/Dreamacro/clash/component/simple-obfs"
-	v2rayObfs "github.com/Dreamacro/clash/component/v2ray-plugin"
-	C "github.com/Dreamacro/clash/constant"
+	"github.com/blueicesir/clash/common/structure"
+	obfs "github.com/blueicesir/clash/component/simple-obfs"
+	v2rayObfs "github.com/blueicesir/clash/component/v2ray-plugin"
+	C "github.com/blueicesir/clash/constant"
 
 	"github.com/Dreamacro/go-shadowsocks2/core"
 	"github.com/Dreamacro/go-shadowsocks2/socks"

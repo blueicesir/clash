@@ -5,9 +5,9 @@ import (
 	"net"
 	"strconv"
 
-	"github.com/Dreamacro/clash/proxy/http"
-	"github.com/Dreamacro/clash/proxy/redir"
-	"github.com/Dreamacro/clash/proxy/socks"
+	"github.com/blueicesir/clash/proxy/http"
+	"github.com/blueicesir/clash/proxy/redir"
+	"github.com/blueicesir/clash/proxy/socks"
 )
 
 var (

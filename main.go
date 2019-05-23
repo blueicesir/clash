@@ -24,28 +24,14 @@ import (
 	"io/ioutil"
 	"github.com/getlantern/systray"
 	"os/exec"
+
+	"encoding/json"
+	"net/http"
+	"bytes"
+
 )
 
 const svcName="Clash for BlueICE"
-
-// type program struct{}
-
-// func (p *program) Start(s service.Service) error {
-// 	go p.run()
-// 	return nil
-// }
-
-// func (p *program) run() {
-// 	// logger.Infof("%s running %v.",svcName,service.Platform())
-// 	go ClashMain()
-// }
-
-// func (p *program) Stop(s service.Service) error {
-// 	// logger.Infof("%s Stopping!",svcName)
-// 	return nil
-// }
-
-
 
 var (
 	version bool
@@ -67,6 +53,7 @@ func onReady(){
 	systray.SetTitle("Clash for BlueICE")
 	systray.SetTooltip("Clash for BlueICE")
 	mEdit:=systray.AddMenuItem("Edit config.yml","Edit Clash Config")
+	mReloadConfig:=systray.AddMenuItem("Reload config.yml","Reload Clash Config")
 	systray.AddSeparator()
 	mQuit:=systray.AddMenuItem("Exit","Exit then Clash")
 	go ClashMain()
@@ -82,12 +69,46 @@ func onReady(){
 		for {
 			select {
 				case <-mEdit.ClickedCh:
-					c:=exec.Command("D:\\Tools\\EditPlus\\editplus.exe","D:\\Doc\\Dropbox\\gfw\\config\\config.yml")
+					home:=getUserDir()
+					config_path:=filepath.Join(home,".config\\clash\\config.yml")
+					c:=exec.Command("D:\\Tools\\EditPlus\\editplus.exe",config_path)
 					c.Start()
+
+				case <-mReloadConfig.ClickedCh:
+					go ReloadConfig()
 			}
 
 		}
 	}()
+}
+
+// 获取用户目录，未来可以适配Unix以及Linux系统
+func getUserDir() string {
+	var home string
+	if "windows"==runtime.GOOS {
+		home=os.Getenv("HOMEDRIVE")+os.Getenv("HOMEPATH")
+		if home == ""{
+			home=os.Getenv("USERPROFILE")
+		}
+	}
+	return home
+}
+
+// 重新加载配置的Tray菜单
+func ReloadConfig(){
+	home:=getUserDir()
+	config_path:=filepath.Join(home,".config\\clash\\config.yml")
+	url:="http://127.0.0.1:9090/configs"
+	params:=map[string]string{"path":config_path,"force":"true"}
+	jsonBody,_:=json.Marshal(params)
+	request,_:=http.NewRequest("PUT",url,bytes.NewBuffer(jsonBody))
+	request.Header.Add("Content-Type","application/json;charset=utf-8")
+	client:=&http.Client{}
+	resp,_:=client.Do(request)
+	defer resp.Body.Close()
+	fmt.Printf("ReloadConfig Response Code:%d",resp.StatusCode)
+	body,_:=ioutil.ReadAll(resp.Body)
+	fmt.Println(string(body))
 }
 
 func getIcon(s string) [] byte {
@@ -101,51 +122,6 @@ func getIcon(s string) [] byte {
 func onExit(){
 
 }
-
-// func main(){
-// 	svcConfig := &service.Config{
-// 		Name:        svcName,
-// 		DisplayName: svcName,
-// 		Description: svcName,
-// 	}
-
-// 	prg := &program{}
-// 	s, err := service.New(prg, svcConfig)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// 	if len(os.Args) > 1 {
-// 		var err error
-// 		verb := os.Args[1]
-// 		switch verb {
-// 		case "install":
-// 			err = s.Install()
-// 			if err != nil {
-// 				log.Errorf("Failed to install: %s\n", err)
-// 				return
-// 			}
-// 			log.Infof("Service \"%s\" installed.\n", svcConfig.DisplayName)
-// 		case "uninstall":
-// 			err = s.Uninstall()
-// 			if err != nil {
-// 				log.Errorf("Failed to Uninstall: %s\n", err)
-// 				return
-// 			}
-// 			log.Infof("Service \"%s\" Uninstall.\n", svcConfig.DisplayName)
-// 		}
-// 		return
-// 	} else {
-// 		if err != nil {
-// 			log.Fatal(err)
-// 		}
-// 		err = s.Run()
-// 		if err != nil {
-// 			log.Error(err)
-// 		}
-// 		log.Infof("Service \"%s\" started.\n", svcConfig.DisplayName)
-// 	}
-// }
 
 
 func ClashMain() {
